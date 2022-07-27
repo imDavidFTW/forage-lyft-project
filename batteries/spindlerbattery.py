@@ -1,4 +1,8 @@
-from battery import Battery
+import os, sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from batteries.battery import Battery
 from datetime import date
 
 class SpindlerBattery(Battery):
@@ -7,4 +11,4 @@ class SpindlerBattery(Battery):
         self.current_date = current_date
     
     def needs_service(self):
-        return self.last_service_date.replace(year = self.last_service_date + 2) < self.current_date
+        return self.last_service_date.replace(year = self.last_service_date.year + 2) < self.current_date
